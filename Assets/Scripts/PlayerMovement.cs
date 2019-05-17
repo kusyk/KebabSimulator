@@ -54,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
             if (movement.magnitude > 1)
                 movement = Vector3.Normalize(movement);
 
-            gameObject.transform.Translate(movement * walkSpeed * 0.2f);
+            float changeSpeed = lockRotation ? 0.15f : 0.2f;
+            gameObject.transform.Translate(movement * walkSpeed * changeSpeed);
 
             if (lockRotation)
             {
@@ -81,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.tag == "tool")
         {
             lockRotation = true;
+            other.GetComponent<Prototype>().showUi = true;
         }
     }
 
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "tool")
         {
             lockRotation = false;
+            other.GetComponent<Prototype>().showUi = false;
         }
     }
 
