@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.tag == "tool")
         {
-            lockRotation = true;
             other.GetComponent<Prototype>().showUi = true;
         }
     }
@@ -99,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "tool")
         {
+            lockRotation = true;
             nearbyObjContr.LookAt(other.transform);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class Prototype : MonoBehaviour {
 
     [SerializeField] private float hOffset = 20;
