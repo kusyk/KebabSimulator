@@ -23,7 +23,9 @@ public class QueueController : MonoBehaviour {
         {
             GameObject temp = visibleClients[0];
             visibleClients.RemoveAt(0);
-            Destroy(temp);
+            temp.GetComponent<NavMeshAgent>().SetDestination(clientSpawn.position);
+            Destroy(temp, 3.0f);
+            SetClientsPositions(true);
         }
     }
 

@@ -14,6 +14,11 @@ public class Prototype : MonoBehaviour {
 
     public static Prototype actualPlace;
 
+    private void Start()
+    {
+        uiElement.transform.localScale = Vector3.zero;
+    }
+
     void LateUpdate () {
 
         if (showUi)
