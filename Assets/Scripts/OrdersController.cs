@@ -11,10 +11,17 @@ public class OrdersController : MonoBehaviour {
 
     [HideInInspector]
     public bool showUi = false;
-    private float scale = 0.0f;
-    
+    [HideInInspector]
+    public float scale = 0.0f;
+
+    [HideInInspector]
+    public QueueController queueController;
+
     private Vector3 m_targetAngle;
     private Vector3 m_currentAngle;
+
+    private int orderID = 0;
+    private int lastOrderID = 0;
 
     private void Start()
     {
@@ -49,7 +56,10 @@ public class OrdersController : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "client")
+        {
             showUi = true;
+            orderID++;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -73,6 +83,15 @@ public class OrdersController : MonoBehaviour {
                 Mathf.LerpAngle(other.transform.eulerAngles.z, m_targetAngle.z, 0.1f));
 
             other.gameObject.transform.eulerAngles = m_currentAngle;
+        }
+
+        if (other.tag == "Player" && showUi == true && orderID != lastOrderID)
+        {
+            if (Input.GetButtonDown("Submit"))
+            {
+                queueController.NextClient();
+                lastOrderID = orderID;
+            }
         }
     }
 
