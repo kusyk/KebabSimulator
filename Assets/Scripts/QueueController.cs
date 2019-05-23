@@ -13,6 +13,7 @@ public class QueueController : MonoBehaviour {
     [SerializeField] private OrdersController ordersController;
     [SerializeField] private GameObject clientPrefab;
     [SerializeField] private Transform clientSpawn;
+    [SerializeField] private Transform clientExit;
     [SerializeField] private Transform[] queuePlaces;
 
 
@@ -53,7 +54,7 @@ public class QueueController : MonoBehaviour {
         clientsCount--;
         GameObject temp = visibleClients[0];
         visibleClients.RemoveAt(0);
-        temp.GetComponent<NavMeshAgent>().SetDestination(clientSpawn.position);
+        temp.GetComponent<NavMeshAgent>().SetDestination(clientExit.position);
         Destroy(temp, 3.0f);
         if (clientsCount > visibleClients.Count)
             SpawnClient();
