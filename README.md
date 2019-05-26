@@ -1,2 +1,2 @@
 # KebabSimulator
-Kebab Simulator - GAME
+Kebab Simulator - Simple Prototype
